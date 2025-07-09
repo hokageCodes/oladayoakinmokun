@@ -7,13 +7,13 @@ export const metadata = {
   description:
     "Combining legal excellence with cutting-edge cybersecurity governance. Trusted advisor in Law, Risk & Compliance.",
 
-  metadataBase: new URL("https://oladayoakinmokun.vercel.app/"), // 🔁 Replace with your actual domain
+  metadataBase: new URL("https://oladayoakinmokun.vercel.app"), // 🔁 Replace with your actual domain
 
   openGraph: {
     title: "Oladayo Akinmokun – The Cyber Lawyer",
     description:
       "Combining legal excellence with cutting-edge cybersecurity governance. Trusted advisor in Law, Risk & Compliance.",
-    url: "https://oladayoakinmokun.vercel.app/", // Replace
+    url: "https://oladayoakinmokun.vercel.app", // Replace
     siteName: "Oladayo Akinmokun",
     images: [
       {
