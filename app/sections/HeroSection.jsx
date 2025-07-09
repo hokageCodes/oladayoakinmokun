@@ -54,7 +54,7 @@ export default function Hero() {
 
       {/* Centered Full Name */}
       <div className="relative z-10 h-full w-full flex items-center justify-center">
-        <h1 className="text-white text-2xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight text-center px-4 sm:px-6 md:px-12">
+        <h1 className="text-white text-5xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold md:tracking-tight text-center px-4 sm:px-6 md:px-12">
           Oladayo Akinmokun
         </h1>
       </div>

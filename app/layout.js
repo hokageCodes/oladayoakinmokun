@@ -7,17 +7,17 @@ export const metadata = {
   description:
     "Combining legal excellence with cutting-edge cybersecurity governance. Trusted advisor in Law, Risk & Compliance.",
 
-  metadataBase: new URL("https://oladayoakinmokun.vercel.app"), // 🔁 Replace with your actual domain
+  metadataBase: new URL("https://oladayoakinmokun.vercel.app"), // ✅ Your live domain
 
   openGraph: {
     title: "Oladayo Akinmokun – The Cyber Lawyer",
     description:
       "Combining legal excellence with cutting-edge cybersecurity governance. Trusted advisor in Law, Risk & Compliance.",
-    url: "https://oladayoakinmokun.vercel.app", // Replace
+    url: "https://oladayoakinmokun.vercel.app",
     siteName: "Oladayo Akinmokun",
     images: [
       {
-        url: "/daylee.png", // 📸 Put her photo in `/public`
+        url: "https://oladayoakinmokun.vercel.app/daylee.png", // ✅ ABSOLUTE URL
         width: 1200,
         height: 630,
         alt: "Oladayo Akinmokun – The Cyber Lawyer",
@@ -31,12 +31,12 @@ export const metadata = {
     title: "Oladayo Akinmokun – The Cyber Lawyer",
     description:
       "Legal expertise meets modern cybersecurity compliance. Explore Oladayo’s portfolio and work.",
-    images: ["/daylee.png"],
-    creator: "@OladayoCyberLaw", // optional if available
+    images: ["https://oladayoakinmokun.vercel.app/daylee.png"], // ✅ ABSOLUTE URL
+    creator: "@OladayoCyberLaw", // optional
   },
 
   icons: {
-    icon: "/favicon.ico", // optional favicon
+    icon: "/favicon.ico",
   },
 };
 
