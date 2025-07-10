@@ -1,127 +1,135 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
-export default function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '#about', label: 'About Me' },
-    { href: '#offerings', label: 'What I Do' },
-    { href: '#why', label: 'Speaking Engagements' },
-    { href: '#testimonials', label: 'Testimonials' },
-    { href: '#contact', label: 'Contact Me' },
+    { href: "#home", label: "Home" },
+    { href: "#about", label: "About Me" },
+    { href: "#offerings", label: "What I Do" },
+    { href: "#speaking", label: "Speaking" },
+    { href: "#testimonials", label: "Testimonials" },
+    { href: "#contact", label: "Contact" },
   ];
 
-  // Track scroll state
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const textColor = scrolled ? 'text-white' : 'text-white';
-  const linkHover = scrolled ? 'hover:text-white' : 'hover:text-[#005f91]';
 
   return (
     <>
+      {/* Navbar */}
       <header
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-[#0077B5] border-b border-white/10' : 'bg-transparent'
-        } backdrop-blur-xl`}
+        className={`fixed w-full z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white/95 backdrop-blur-2xl border-b border-gray-200 shadow-md"
+            : "bg-transparent"
+        }`}
       >
-        <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8">
-          <div className="flex items-center justify-between h-[80px]">
-            {/* Logo */}
-            <Link href="/" className="flex items-center h-full">
-              <span className={`text-4xl font-bold ${textColor}`}>O.A</span>
-            </Link>
+        <div className="max-w-7xl mx-auto px-2 lg:px-6">
+          <div className="flex items-center justify-between h-20">
+            {/* Shared Logo */}
+            <div className="flex items-center">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-[#0077B5] rounded-full blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
+                <div className="relative bg-[#0077B5] rounded-full p-2">
+                  <span className="text-white font-bold text-xl">OA</span>
+                </div>
+              </div>
+              <span
+                className={`ml-3 font-medium text-lg transition-colors duration-300 ${
+                  scrolled ? "text-gray-900" : "text-white drop-shadow-lg"
+                }`}
+              >
+                Oladayo Akinmokun
+              </span>
+            </div>
 
-            {/* Desktop Nav */}
-            <nav className="hidden text-white lg:flex items-center gap-10 text-lg">
-              {navLinks.map((item) => (
-                <Link
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              {navLinks.map((item, index) => (
+                <a
                   key={item.href}
                   href={item.href}
-                  className={`font-medium transition duration-200 ${textColor} ${linkHover}`}
+                  className={`transition-all duration-300 relative group py-2 ${
+                    scrolled
+                      ? "text-gray-600 hover:text-[#0077B5]"
+                      : "text-white/90 hover:text-white drop-shadow-md"
+                  }`}
                 >
                   {item.label}
-                </Link>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#0077B5] transition-all duration-300 group-hover:w-full"></span>
+                </a>
               ))}
-              <Link
-                href="#apply"
-                className="bg-[#0077B5] text-white px-6 py-2.5 rounded-full font-medium hover:bg-blue-700 transition hover:scale-105 flex items-center gap-2"
-              >
-                Let's Work Together
+              <button className="bg-[#0077B5] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#005885] hover:shadow-lg hover:shadow-[#0077B5]/25 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                Let's Connect
                 <ArrowUpRight size={16} />
-              </Link>
+              </button>
             </nav>
 
-            {/* Mobile Menu Toggle */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className={`p-2 rounded-full transition ${textColor} hover:bg-black/5`}
-              >
-                <Menu size={32} />
-              </button>
-            </div>
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`lg:hidden p-2 rounded-full transition-all duration-300 ${
+                scrolled
+                  ? "text-gray-900 hover:bg-gray-100"
+                  : "text-white hover:bg-white/10 drop-shadow-md"
+              }`}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <div
-        className={`fixed inset-0 z-[60] bg-[#0077B5] transition-all duration-500 ease-out ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ease-out ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="flex flex-col h-full px-6 pt-6">
-          {/* Mobile Header */}
-          <div className="flex justify-between items-center">
-            <div className="text-white text-3xl font-bold">O.A</div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-full text-white"
-            >
-              <X size={24} />
-            </button>
-          </div>
+        <div className="absolute inset-0 bg-[#0077B5]/95 backdrop-blur-xl"></div>
 
-          {/* Mobile Nav */}
-          <nav className="flex flex-col justify-center flex-1 space-y-8 mt-12">
-            {navLinks.map((item) => (
-              <Link
+        <div className="relative h-full flex flex-col">
+          {/* Nav Links */}
+          <nav className="flex-1 flex flex-col justify-center px-6 space-y-6">
+            {navLinks.map((item, index) => (
+              <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className="text-3xl text-white/80 font-light tracking-tight hover:text-white transition"
+                className={`text-2xl text-white/90 hover:text-white transition-all duration-500 py-2 transform ${
+                  isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
+                }`}
+                style={{
+                  transitionDelay: isOpen ? `${index * 0.1}s` : "0s",
+                }}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
-
-            <Link
-              href="#apply"
+            <button
               onClick={() => setIsOpen(false)}
-              className="inline-flex items-center gap-3 bg-white text-[#0077B5] px-8 py-4 rounded-full text-lg font-medium hover:bg-blue-100 hover:scale-105 transition"
+              className={`bg-white text-[#0077B5] px-8 py-3 rounded-full font-medium hover:bg-gray-50 hover:shadow-lg transition-all duration-500 text-lg mt-6 self-start transform ${
+                isOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
+              }`}
+              style={{
+                transitionDelay: isOpen ? `${navLinks.length * 0.1}s` : "0s",
+              }}
             >
-              Let's Work Together
-              <ArrowUpRight size={20} />
-            </Link>
+              Let's Connect
+            </button>
           </nav>
-
-          <div className="pb-6 border-t border-white/10 text-white/40 text-sm pt-4">
-            © 2025 Oladayo Akinmokun. All rights reserved.
-          </div>
         </div>
       </div>
     </>
   );
-}
+};
+
+export default Navbar;
