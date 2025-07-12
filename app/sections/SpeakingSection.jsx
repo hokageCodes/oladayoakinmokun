@@ -33,7 +33,7 @@ const SpeakingSection = () => {
         {/* Left Text Content */}
         <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
           <h2 className="text-3xl md:text-4xl font-bold text-linkedin">
-            Speaking Engagements & Testimonials
+            Speaking Engagements
           </h2>
           <p className="text-lg text-gray-700 max-w-xl">
             From empowering young professionals on LinkedIn Live to addressing compliance for startups,
